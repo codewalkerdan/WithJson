@@ -8,14 +8,15 @@ import club.someoneice.ovo.util.Util.findItemByText
 import net.minecraft.entity.LivingEntity
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
+import net.minecraft.registry.Registries
+import net.minecraft.registry.Registry
 import net.minecraft.util.Identifier
 import net.minecraft.util.UseAction
-import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
 
 class ItemFoodsBase(settings: Settings, private val foodSet: ItemFood): Item(settings) {
     init {
-        Registry.register(Registry.ITEM, Identifier(Info.modid, foodSet.name), this)
+        Registry.register(Registries.ITEM, Identifier(Info.modid, foodSet.name), this)
         CoreDataOutput(ItemJsonHelper(), foodSet)
     }
 
