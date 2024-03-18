@@ -10,12 +10,8 @@ import club.someoneice.ovo.util.tool.ItemShovels
 import net.minecraft.item.Item
 import net.minecraft.item.ToolMaterials
 
-class ItemTools(toolSet: ItemTool) {
+class ItemTools(private val toolSet: ItemTool, private val itemSetting: Item.Settings) {
     init {
-        val settings: Item.Settings = Item.Settings()
-        settings.group(DataList.getGroup[toolSet.group])
-        settings.maxCount(1)
-
         val mate: ToolMaterials = when (toolSet.tool_meta) {
             "wood" -> ToolMaterials.WOOD
             "stone" -> ToolMaterials.STONE
@@ -27,10 +23,10 @@ class ItemTools(toolSet: ItemTool) {
         }
 
         when (toolSet.toolkit) {
-            "axe" -> ItemAxes(settings, mate, toolSet)
-            "pickaxe" -> ItemPickaxes(settings, mate, toolSet)
-            "hoe" -> ItemHoes(settings, mate, toolSet)
-            "shovel" -> ItemShovels(settings, mate, toolSet)
+            "axe" -> ItemAxes(itemSetting, mate, toolSet)
+            "pickaxe" -> ItemPickaxes(itemSetting, mate, toolSet)
+            "hoe" -> ItemHoes(itemSetting, mate, toolSet)
+            "shovel" -> ItemShovels(itemSetting, mate, toolSet)
 
             else -> Sandman.nullSandman()
         }
